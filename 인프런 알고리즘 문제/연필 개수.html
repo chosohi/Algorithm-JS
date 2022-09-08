@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(a) {
+        // let answer = parseInt(a / 12);
+        // if (a % 12) {
+        //   answer += 1;
+        // }
+        // 숫자 올림
+        let answer = Math.ceil(a / 12);
+        return answer;
+        // 숫자 내림
+        let tmp = Math.floor(a / 12);
+        // 숫자 반올림
+        let tmp2 = Math.round(a / 12);
+      }
+
+      console.log(solution(24));
+    </script>
+  </body>
+</html>
