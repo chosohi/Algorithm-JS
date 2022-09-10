@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // forEach, map, filter, reduce
+      // 모두 다 매개변수로 함수를 받는 "고차함수"
+
+      // 1. forEach
+      function forEach(predicate, thisArg) {
+        // predicate는 함수
+        // thisArg는 forEach함수에서 this 가리킬 변수 (생략 가능 )
+        for (let i = 0; i < arr.length; i++) {
+          predicate(arr[i], i);
+        }
+      }
+
+      arr = [10, 11, 12, 13, 14];
+
+      // callback 함수 넘겨줌
+      arr.forEach(function (v, i) {
+        console.log(v, i);
+      });
+
+      // 2. map
+      function map(predicate, thisArg) {
+        let list = [];
+        for (let i = 0; i < array.length; i++) {
+          // 콜백함수가 리턴한 요소와 인덱스를 반환
+          list.push(predicate(a[i], i));
+        }
+        return list;
+      }
+
+      // 주어진 요소를 가지고 새로운 배열을 생성
+      // map은 "원본 배열과 새로운 배열의 길이가 같다"
+      // 콜백함수가 리턴한 요소가 undefined일 경우, 해당 undefined가 list에 들어가기 때문
+      let answer = arr.map(function (v, i) {
+        return v * v;
+      });
+
+      // 3. filter
+      function filter(predicate, thisArg) {
+        let list = [];
+        for (let i = 0; i < a.length; i++) {
+          // filter의 콜백함수에서 트루로 리턴된 요소들만 선택
+          if (predicate(a[i], i)) list.push(a[i]);
+        }
+      }
+
+      // 원본 배열 중 값을 택해서 반환하는 함수
+      // 원본 배열과 새로운 배열의 길이가 다르다!
+      // 반환되는 배열의 길이로 바뀜
+      filterAnswer = arr.filter(function (v, i) {
+        return v % 2 == 1;
+      });
+
+      // 4. reduce
+      function reduce(predicate, value) {
+        let result = value;
+        for (let i = 0; i < array.length; i++) {
+          result = predicate(result, a[i]);
+        }
+        return result;
+      }
+
+      // 어떤 값을 생성해서 반환함
+    </script>
+  </body>
+</html>
