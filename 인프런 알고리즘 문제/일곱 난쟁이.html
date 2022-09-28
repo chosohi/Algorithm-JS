@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+        let tmp = [];
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            if (sum - i - j === 100) {
+              tmp.push(i);
+              tmp.push(j);
+              console.log(tmp);
+              break;
+            }
+            if (tmp.length > 0) {
+              break;
+            }
+          }
+        }
+        arr.forEach((val) => {
+          if (val in tmp) {
+          } else {
+            answer.push(val);
+          }
+        });
+        return answer;
+      }
+
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      let sum = 0;
+      arr.forEach((element) => {
+        sum += element;
+      });
+      console.log(solution(arr, sum));
+    </script>
+  </body>
+</html>

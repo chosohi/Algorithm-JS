@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = "";
+        for (let x of arr) {
+          if (x === "A") {
+            answer += "#";
+          } else {
+            answer += x;
+          }
+        }
+        return answer;
+      }
+      let str = "BANANA";
+      console.log(solution(str));
+
+      function solution(arr) {
+        let answer = arr;
+        // arr에서 A라는 대문자를 찾아서 #으로 바꿔라는 함수
+        arr = arr.replace(/A/, "#");
+        return answer;
+      }
+      let str = "BANANA";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
