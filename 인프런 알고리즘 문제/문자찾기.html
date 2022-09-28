@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        // t를 기준으로 분리한 갯수는 t + 1
+        // 만약에 t가 맨뒤에 있다면?
+        // 빈문자열로 잘라짐
+        // "COMPUT", "P", "OG", "AMMING", ""
+        let answer = s.split(t).length;
+        return answer - 1;
+      }
+      let s = "COMPUTERPROGRAMMING";
+      // R의 갯수 찾기
+      console.log(solution(s, "R"));
+    </script>
+  </body>
+</html>

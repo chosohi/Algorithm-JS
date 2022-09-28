@@ -5,6 +5,7 @@
   </head>
   <body>
     <script>
+      // 1번째 방법
       function solution(arr) {
         let answer = "";
         for (let x of arr) {
@@ -19,10 +20,11 @@
       let str = "BANANA";
       console.log(solution(str));
 
+      // 2번째 방법
       function solution(arr) {
         let answer = arr;
-        // arr에서 A라는 대문자를 찾아서 #으로 바꿔라는 함수
-        arr = arr.replace(/A/, "#");
+        // arr에서 A라는 대문자를 찾아서 #으로 바꿔라는 함수 g를 붙으면 A 전체에 해당
+        answer = answer.replace(/A/g, "#");
         return answer;
       }
       let str = "BANANA";
