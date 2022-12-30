@@ -69,3 +69,111 @@ function compareByLen(str1, str2) {
 2. 변수 j로, 내부 반복문을 만들어, 처음부터 i-1까지 순회한다.
 3. 만약 arr[j]> arr[j+1]이면, 두 값을 교체한다(swap).
 4. 정렬된 배열을 반환한다.
+
+## 18강 자료 구조 소개
+
+### ES2015 클래스 구문 개요
+
+#### 클래스란?
+
+사전에 정의된 속성 및 메소드들을 이용해 객체를 생성하기 위한 청사진과 같다.
+자바스크립트는 기본적으로 객체 지향적이지 않으며, 단지 프로토타입 기반 상속자 혹은 프로토타이핑으로 불리는 무엇인가를 이용하는 것이다.
+
+### 클래스 키워드
+
+생성자(constructor)는 새로운 Student 인스턴스를 인스턴스화시킬때 사용되는 특별한 메소드
+
+```javascript
+class Student {
+  constructor(firstName, lastName) {
+    this.firstName = firstNAme;
+    this.lastName = lastName;
+  }
+}
+```
+
+new 키워드를 통해 클래스로부터 새로운 객체를 인스턴스화
+
+```javascript
+let firstStudent = new Student("Colt", "Steele");
+let secondStudent = new Student("Blue", "Steele");
+```
+
+#### this
+
+this 키워드는 상황에 따라 의미가 조금씩 다르다. 여기서 생성자 함수에 쓰이는 this는 개별 클래스 인스턴스, 즉 개별 Student 인스턴스를 지징하게 된다.
+
+키워드 this는 개별 클래스로부터 생성된 객체, 즉 실제 인스턴스를 참조한다.
+
+#### constructor
+
+new 연산자로 제공된 데이터는 기본적으로 생성자(constructor)로 전달되고, 새로운 클래스 인스턴스가 생성될 때, 이 생성자가 동작하게 된다.
+
+### Instance 메소드 추가하기
+
+- 각 인스턴스에 종속적인 메소드들 만들기
+
+```javascript
+class Student {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    // 지각
+    this.late = 0;
+    this.score = [];
+  }
+
+  marklate() {
+    this.late++;
+    if (this.late >= 3) {
+      return `${this.firstName} ${this.lastName} is out`;
+    }
+    return `${this.firstName} ${this.lastName} is late ${this.late} time(s)`;
+  }
+  pushScore(score) {
+    this.score.push(score);
+    return this.score;
+  }
+  calculateAverage() {
+    let sum = this.score.reduce((a, b) => a + b);
+    return sum / this.score.length;
+  }
+}
+let firstStudent = new Student("Colt", "Steele");
+let secondStudent = new Student("Blue", "Steele");
+firstStudent.marklate();
+```
+
+### class 메소드 추가하기
+
+#### static 키워드
+
+static 키워드는 클래스에 종속되는 반면 클래스의 개별 인스턴스 메소드에는 반드시 종속적일 필요가 없는 메소드 혹은 기능들을 생성해준다.
+클래스의 인스턴스화 없이도 호출될 수 있으며, 클래스 인스턴스를 통해서는 호출될 수 없다.
+
+```javascript
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  static distance(point1, point2) {
+    const dx = point1.x - point2.x;
+    const dy = point1.y - point2.y;
+    return Math.hypot(dx, dy);
+  }
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+Point.distance(p1, p2);
+// 7.0710678118654755;
+```
+
+### class 총정리
+
+- 클래스들은 인스턴스로 알려진 객체를 생성하기 위한 청사진이며,
+- 이런 클래스들은 "new"키워드를 통해 생성되거나 인스턴스화된다.
+- 컨스트럭터 함수는 클래스가 인스턴스화될 때, 동작하는 특별한 함수이다.
+- "new"를 통해 "Student" 클래스를 인턴턴화 시키게 되면, "Student"의 컨스트럭터가 먼저 동작하게 된다.
+- 인스턴스 메소드는 메소드 혹은 객체와 유사한 방식으로 클래스에 추가될 수 있으며, 클래스 메소드는"static"키워드와 함께 추가될 수 있다.
