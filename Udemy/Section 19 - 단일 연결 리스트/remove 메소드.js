@@ -96,4 +96,30 @@ class SinglyLinkedList {
     }
     return false;
   }
+
+  insert(index, value) {
+    if (index < 0 || index > this.length) return false;
+    // push 메소드가 리스트를 반환하니, 여기에 더블!을 하면 !(not)!(not) 이중 부정, 즉 불리언으로 변환해줌
+    if (index === this.length) return !!this.push(value);
+    if (index === 0) return !!this.unshift(value);
+    let prev = this.get(index - 1);
+    let newNode = new Node(value);
+    let tmp = prev.next;
+    prev.next = newNode;
+    newNode.next = tmp;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    let prevoiusNode = this.get(index - 1);
+    // 삭제할 노드
+    let removed = prevoiusNode.next;
+    prevoiusNode.next = removed.next;
+    this.length--;
+    return removed;
+  }
 }
