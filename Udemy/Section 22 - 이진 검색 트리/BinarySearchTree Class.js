@@ -39,7 +39,53 @@ class BinarySearchTree {
       }
     }
   }
+  find(value) {
+    if (this.root === null) return false;
+    // 10
+    let current = this.root,
+      found = false;
+
+    while (current && !found) {
+      // value = 2, current.value = 10
+      if (value < current.value) {
+        // 왼쪽 노드로 이동
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else {
+        // 값을 찾음
+        found = true;
+      }
+    }
+    if (!found) return undefined;
+    // found가 true일때
+    return current;
+  }
+  contains(value) {
+    if (this.root === null) return false;
+    // 10
+    let current = this.root,
+      found = false;
+
+    while (current && !found) {
+      // value = 2, current.value = 10
+      if (value < current.value) {
+        // 왼쪽 노드로 이동
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else {
+        // 값을 찾음
+        return true;
+      }
+    }
+    // left 나 right 가 없으면 current가 null로 할당되면서 while문에서 나옴
+    return false;
+  }
 }
+
+//  10
+// 5  13
 
 let tree = new BinarySearchTree();
 tree.root = new Node(10);
