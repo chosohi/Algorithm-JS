@@ -7,36 +7,33 @@ function solution(msg) {
     dict[String.fromCharCode(i)] = i - 64;
   }
 
-  let start = msg[0];
-  let prior = "";
-  let idx = 0;
+  // for
+  // 새로운단어를 붙여
+  // 만약 붙여진 새로운 단어가 dict 에 없다면
+  // dict 에 해당 단어 : 마지막 value+1
+  // answer.push(처음부터 마지막-1까지의 단어에 대한 value)
+  // 있다면
+  let newMsg = "";
+  for (let i = 0; i < msg.length; i++) {
+    newMsg += msg[i];
+    if (newMsg.length > 1) {
+      if (!(newMsg in dict)) {
+        answer.push(dict[newMsg.substring(0, newMsg.length - 1)]);
 
-  while (idx < msg.length) {
-    console.log(start);
-    if (start in dict) {
-      answer.push(dict[start]);
-      idx++;
-      if (idx === msg.length) break;
+        let values = Object.values(dict);
+        let lastValue = values[values.length - 1] + 1;
 
-      prior = start;
-      start += msg[idx];
+        dict[newMsg] = lastValue;
+        newMsg = newMsg[newMsg.length - 1];
+      }
     }
-    let lastVal = Object.values(dict).slice(-1)[0];
-    dict[start] = ++lastVal;
-    console.log("no dict", start);
-    answer.push(dict[start]);
-    idx++;
-    start += msg[idx];
-    start = start.slice(1);
-    prior = start.slice(0);
-    console.log("prior", prior);
-    // console.log(start);
   }
-
+  console.log(newMsg);
+  if (newMsg) answer.push(dict[newMsg]);
   return answer;
 }
 
-console.log(solution("KAKAO"));
+console.log(solution("TOBEORNOTTOBEORTOBEORNOT"));
 
 // while
 // 현재 들어온 단어가 사전에 있으면 그다음단어랑 합쳐
