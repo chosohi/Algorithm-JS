@@ -1,29 +1,22 @@
+// 처음에는 stack.at(-1)으로 접근하였는데, 이로 인해 효율성 1번 문제가 시간초과가 걸림
+// stack[stack.length-1]로 접근하여 시간초과 해결
 function solution(arr) {
   let answer = 0;
-  lt = 0;
-  rt = 1;
-  while (true) {
-    if (arr.length === 0) {
-      break;
-    }
-    if (rt > arr.length - 1 || lt > arr.length - 1) {
-      break;
-    }
-    if (arr[lt] === arr[rt]) {
-      arr = arr.slice(0, lt) + arr.slice(rt + 1);
-      lt = 0;
-      rt = 1;
-      answer++;
+  let stack = [arr[0]];
+  for (let i = 1; i < arr.length; i++) {
+    if (stack.length) {
+      if (stack[stack.length - 1] === arr[i]) {
+        stack.pop();
+      } else {
+        stack.push(arr[i]);
+      }
     } else {
-      lt++;
-      rt++;
+      stack.push(arr[i]);
     }
-  }
-  if (arr.length === 0) {
-    return 1;
+
+    answer = stack.length ? 0 : 1;
   }
   return answer;
 }
 
 console.log(solution("baabaa"));
-console.log(solution("baba"));
