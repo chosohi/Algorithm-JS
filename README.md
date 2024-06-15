@@ -1,2 +1,2 @@
-Algorithm
+# Algorithm
 Solving Algorithm with JavaScript
